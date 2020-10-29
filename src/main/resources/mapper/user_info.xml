@@ -1,0 +1,82 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ng.temp1.mapper.UserInfoMapper">
+	<sql id="selectColumns">
+		usi.usi_num,		usi.usi_id,		usi.usi_pwd,		DATE_FORMAT(usi.credat,'%Y-%m-%d') AS credat,		TIME_FORMAT(usi.cretim,'%H:%i:%S') AS cretim,		DATE_FORMAT(usi.moddat,'%Y-%m-%d') AS moddat
+,		TIME_FORMAT(usi.modtim,'%H:%i:%S') AS modtim,		usi.active	
+	</sql>
+	<select id="selectUSIList" resultType="usi">
+		SELECT <include refid="selectColumns"></include> FROM
+		user_info usi 		
+		<where>
+			<if test='usiNum != null and usiNum != ""'>
+ 				AND usi.usi_num like concat('%',#{usiNum},'%')
+			</if>
+			<if test='usiId != null and usiId != ""'>
+ 				AND usi.usi_id like concat('%',#{usiId},'%')
+			</if>
+			<if test='usiPwd != null and usiPwd != ""'>
+ 				AND usi.usi_pwd = #{usiPwd}
+			</if>
+			<if test='credat != null and credat != ""'>
+ 				AND usi.credat like concat('%',replace(#{credat},'-',''),'%')
+			</if>
+			<if test='cretim != null and cretim != ""'>
+ 				AND usi.cretim like concat('%',#{cretim},'%')
+			</if>
+			<if test='moddat != null and moddat != ""'>
+ 				AND usi.moddat like concat('%',replace(#{moddat},'-',''),'%')
+			</if>
+			<if test='modtim != null and modtim != ""'>
+ 				AND usi.modtim like concat('%',#{modtim},'%')
+			</if>
+			<if test='active != null and active != ""'>
+ 				AND usi.active like concat('%',#{active},'%')
+			</if>
+		</where>
+		<trim prefix="order by">
+	    	<if test="orders!=null">
+	    		${orders}
+	    	</if>
+	    </trim>
+	    
+	</select>
+	<select id="selectUSI" resultType="usi">
+		SELECT <include refid="selectColumns"></include> FROM user_info usi 
+		WHERE usi_num = #{usiNum}
+	</select>
+	<insert id="insertUSI" useGeneratedKeys="true" keyProperty="usiNum" keyColumn="usi_num">
+		INSERT INTO user_info	
+		(
+ 			<if test="usiId != null and usiId != '' ">  usi_id,</if>
+			<if test="usiPwd != null and usiPwd != '' ">  usi_pwd,</if>
+			<if test="active != null and active != '' ">  active,</if>
+	credat,	cretim,	moddat,	modtim)
+		VALUES(
+ 			<if test="usiId != null and usiId != '' ">  #{usiId},</if>
+			<if test="usiPwd != null and usiPwd != '' ">  #{usiPwd},</if>
+			<if test="active != null and active != '' ">  #{active},</if>
+		DATE_FORMAT(NOW(),'%Y%m%d'),		DATE_FORMAT(NOW(),'%H%i%S'),		DATE_FORMAT(NOW(),'%Y%m%d'),		DATE_FORMAT(NOW(),'%H%i%S'))
+	</insert>
+	
+	<update id="updateUSI">
+		UPDATE user_info usi 
+		<set>
+			<if test="usiId != null and usiId != '' ">  usi_id = #{usiId},</if>
+			<if test="usiPwd != null and usiPwd != '' ">  usi_pwd = #{usiPwd},</if>
+			<if test="active != null and active != '' ">  active = #{active},</if>
+			MODDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+			MODTIM = DATE_FORMAT(NOW(),'%H%i%S')
+		</set>
+		WHERE  usi.usi_num  = #{usiNum}
+	</update>
+	
+	<delete id="deleteUSI">
+		UPDATE user_info	
+		SET ACTIVE=0,
+		MODDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+		MODTIM = DATE_FORMAT(NOW(),'%H%i%S')
+		WHERE  usi_num  = #{usiNum}
+	</delete>
+</mapper>
