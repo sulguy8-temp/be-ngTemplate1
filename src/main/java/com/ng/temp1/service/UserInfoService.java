@@ -9,11 +9,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.ng.temp1.exception.ServiceException;
 import com.ng.temp1.mapper.UserInfoMapper;
 import com.ng.temp1.utils.FileUtils;
-import com.ng.temp1.vo.PaginationVO;
 import com.ng.temp1.vo.UserInfoVO;
+import com.ng.temp1.vo.common.PaginationVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +31,7 @@ public class UserInfoService {
 	private String path = "usi";
 	
 	public Page<UserInfoVO> selectUSIList(UserInfoVO usi,PaginationVO page) {
-//		PageHelper.startPage(page.getPageNum(), page.getPageSize());
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return usiMapper.selectUSIList(usi);
 	}
 	
@@ -38,8 +39,8 @@ public class UserInfoService {
 		return usiMapper.selectUSIList(null);
 	}
 	
-	public UserInfoVO selectUSI(int USI_NUM) {
-		return usiMapper.selectUSI(USI_NUM);
+	public UserInfoVO selectUSI(int usi_num) {
+		return usiMapper.selectUSI(usi_num);
 	}
 		
 	public Map<String,Object> updateUSI(UserInfoVO usi) {

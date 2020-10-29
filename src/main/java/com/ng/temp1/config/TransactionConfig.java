@@ -32,7 +32,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 @EnableTransactionManagement
 public class TransactionConfig {
 	  private static final int TX_METHOD_TIMEOUT = 300; //테스트용 : 타임아웃 120초, 운영용 : 20초로 바꿔야함. 
-	    private static final String AOP_POINTCUT_EXPRESSION = "execution(* kr.co.withmom..*Service.*(..))";
+	    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.ng.temp1..*Service.*(..))";
 	    @Autowired
 	    private DataSourceTransactionManager transactionManager;
 	 

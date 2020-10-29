@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ng.temp1.mapper.UserInfoMapper;
 import com.ng.temp1.service.UserInfoService;
-import com.ng.temp1.vo.PaginationVO;
 import com.ng.temp1.vo.UserInfoVO;
+import com.ng.temp1.vo.common.PaginationVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,33 +25,24 @@ public class UserInfoController {
 
 	@Resource
 	private UserInfoService usiService;
-	
-	@Resource
-	private UserInfoMapper usiMapper;
 
-	@GetMapping("/test")
-	public  void test(){	
-		System.out.println("test");
-		System.out.println(usiMapper.test(1));
-	}
-	
-	@GetMapping("/user/usis")
+	@GetMapping("/usr/usis")
 	public  Closeable selectUSIList(UserInfoVO usi, PaginationVO page){
 		return usiService.selectUSIList(usi, page);
 	}
-	@GetMapping("/user/usi/{usiNum}")
+	@GetMapping("/usr/usi/{usiNum}")
 	public  UserInfoVO selectUSI(@PathVariable("usiNum") int usiNum){
 		return usiService.selectUSI(usiNum);
 	}
-	@PostMapping("/user/usi")
+	@PostMapping("/usr/usi")
 	public  Map<String,Object> insertUSI(@ModelAttribute  UserInfoVO usi) {
 		return usiService.insertUSI(usi);
 	}
-	@PostMapping("/user/usi/mod")
+	@PostMapping("/usr/usi/mod")
 	public Map<String,Object> updateUSI(@ModelAttribute UserInfoVO usi) {
 		return usiService.updateUSI(usi);
 	}
-	@PostMapping("/user/usis/del")
+	@PostMapping("/usr/usis/del")
 	public Map<String,Object> deleteUSI(@RequestBody List<Integer> nums) {
 		return usiService.deleteUSI(nums);
 	}
