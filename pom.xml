@@ -146,13 +146,7 @@
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
 			<version>1.7</version>
-		</dependency>
-		<!-- google firebase fsm -->
-		<!--<dependency>
-		    <groupId>com.google.firebase</groupId>
-		    <artifactId>firebase-admin</artifactId>
-		    <version>6.16.0</version>
-		</dependency>-->		
+		</dependency>	
 	</dependencies>
 
 	<build>
