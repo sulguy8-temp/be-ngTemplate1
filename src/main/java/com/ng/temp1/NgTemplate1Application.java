@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 public class NgTemplate1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NgTemplate1Application.class, args);
+		SpringApplication.run(NgTemplate1Application.class, args); 
 	}
 
 }
