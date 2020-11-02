@@ -15,22 +15,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CrossConfig implements WebMvcConfigurer {
 
-
 	@Resource
 	private AuthInterceptor adminInterceptor;
 
-
 	@Value("${allrowed.origins}")
 	private String allrowedOrigins;
-//	@Autowired
-//	private SessionAdvice sessionAdvice;
 
 	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-
 		String osName = System.getProperty("os.name");
 		if(osName.toLowerCase().indexOf("window")!=-1) {
 			config.addAllowedOrigin("http://localhost");
@@ -54,23 +49,11 @@ public class CrossConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-
 		registry.addInterceptor(adminInterceptor)
 		.excludePathPatterns("/**/*.css","/**/*.js")
-//		.excludePathPatterns("/test")
+		.excludePathPatterns("/test")
 		.addPathPatterns("/**"); 
-		
 		WebMvcConfigurer.super.addInterceptors(registry);
-		
-			//	.excludePathPatterns("/**"); // pattern 매핑, pattern 제외
-		/*
-		 * registry.addInterceptor(sessionAdvice).addPathPatterns("/**").
-		 * excludePathPatterns("/all/**")
-		 * .excludePathPatterns("/login").excludePathPatterns("/sign/**").
-		 * excludePathPatterns("/sign")
-		 * .excludePathPatterns("/admini").excludePathPatterns("/admin").
-		 * excludePathPatterns("/admin/**");
-		 */ 
 	}
 
 }

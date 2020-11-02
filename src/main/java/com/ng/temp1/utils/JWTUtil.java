@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.ng.temp1.vo.CustomerInfoVO;
+import com.ng.temp1.vo.UserInfoVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,8 +30,8 @@ public class JWTUtil {
 		return dateMap;
 	}
 	
-	public static String generateJWT(CustomerInfoVO cui) {		
-		return generateJWT(cui.getCuiId());
+	public static String generateJWT(UserInfoVO usi) {		
+		return generateJWT(usi.getUsiId());
 	}
 	public static String generateJWT(String id) {
 		Map<String,Date> dateMap = getDateMap();
@@ -48,10 +48,10 @@ public class JWTUtil {
 		log.info("jwtf=>{}",jwt);		
 		return jwt;
 	}
-	public static void verifiJWT(String token, CustomerInfoVO cui) {
+	public static void verifiJWT(String token, UserInfoVO usi) {
 		JWTVerifier verifier = JWT
 				.require(Algorithm.HMAC256(SALT))
-				.withIssuer(cui.getCuiId())
+				.withIssuer(usi.getUsiId())
 				.build();
 		verifier.verify(token);
 	}
@@ -62,13 +62,5 @@ public class JWTUtil {
 				.withIssuer(id)
 				.build();
 		verifier.verify(token);
-	}
-	public static void main(String[] args) {
-		CustomerInfoVO cui = new CustomerInfoVO();
-		cui.setCuiId("V2");
-		String JWTTokken = JWTUtil.generateJWT(cui);
-		System.out.println(JWTTokken);
-		System.out.println("개행");
-		JWTUtil.verifiJWT("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJWMiIsImV4cCI6MTU3NzEwNDYwMiwiaWF0IjoxNTc3MTAyODAyfQ.HsUdX26ateTTLtQDGy1Op-09aBlgn5FiDAGTqPAu0Ak", "V2");
 	}
 }

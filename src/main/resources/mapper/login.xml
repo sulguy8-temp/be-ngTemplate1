@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ng.temp1.mapper.LoginMapper">
+	<select id="selectForCUI" resultType="usi">
+		SELECT usi.USI_ID, usi.USI_PWD 
+		FROM user_info usi 
+		WHERE usi.USI_ID = #{usiId} AND usi.USI_PWD = #{usiPwd};
+	</select>
+	<update id="updateLastLogin">
+		update customer_info
+		set last_login=date_format(now(),'%Y%m%d')
+		where cui_num = #{cuiNum}
+	</update>
+</mapper>

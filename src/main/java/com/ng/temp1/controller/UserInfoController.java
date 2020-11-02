@@ -26,6 +26,11 @@ public class UserInfoController {
 	@Resource
 	private UserInfoService usiService;
 
+	@GetMapping("/test")
+	public void test(){ 
+		System.out.println("hello");
+	}
+	
 	@GetMapping("/usr/usis")
 	public  Closeable selectUSIList(UserInfoVO usi, PaginationVO page){
 		return usiService.selectUSIList(usi, page);
