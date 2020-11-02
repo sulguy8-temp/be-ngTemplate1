@@ -32,6 +32,7 @@ public class UserInfoService {
 	
 	public Page<UserInfoVO> selectUSIList(UserInfoVO usi,PaginationVO page) {
 		PageHelper.startPage(page.getPageNum(), page.getPageSize());
+		System.out.println(usiMapper.selectUSIList(usi));
 		return usiMapper.selectUSIList(usi);
 	}
 	

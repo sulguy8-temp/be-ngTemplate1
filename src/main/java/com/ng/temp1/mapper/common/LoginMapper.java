@@ -1,4 +1,4 @@
-package com.ng.temp1.mapper;
+package com.ng.temp1.mapper.common;
 
 import org.mybatis.spring.annotation.MapperScan;
 

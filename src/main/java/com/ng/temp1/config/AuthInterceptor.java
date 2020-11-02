@@ -35,9 +35,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if(method.contentEquals("OPTIONS")) {
 			return true;
 		}
-		//TODO 비로그인일경우 0으로 로그인처리를 하고 토큰을 전송해야함.
-		// 일단 angular만 헤더에 있으면 처리해줌.
-		// 구매나 취소로직을 경우에는 다른 Interceptor를 타게 해야함.
+
 		if(angular!=null) {
 			if(id==null || token==null || method==null) {
 				return false;
@@ -52,20 +50,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			}			
 			return true;
 		}
-		HttpSession session = request.getSession();
-		if(session != null ) {
-//			CustomerInfoVO admin = (CustomerInfoVO)session.getAttribute("admin");
-//			if(admin != null) {
-//				return true;
-//			}
-		}
+
 		log.info("admin=>{}","0:0:0:0:0:0:0:1".equals(request.getRemoteAddr()));
 		log.info("request.getRequestURI()=>{}",request.getRequestURI());
 		if("0:0:0:0:0:0:0:1".equals(request.getRemoteAddr())) {
-//			CustomerInfoVO cui = new CustomerInfoVO();
-//			cui.setCuiId("admin");
-//			cui.setCuiPwd("ggi600!@");
-//			loginService.doAdminLogin(cui, session);
 			return true;
 		}
 		

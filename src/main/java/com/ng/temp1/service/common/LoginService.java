@@ -1,4 +1,4 @@
-package com.ng.temp1.service;
+package com.ng.temp1.service.common;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ng.temp1.exception.ServiceException;
-import com.ng.temp1.mapper.LoginMapper;
+import com.ng.temp1.mapper.common.LoginMapper;
 import com.ng.temp1.utils.JWTUtil;
 import com.ng.temp1.utils.SHAE;
 import com.ng.temp1.vo.UserInfoVO;

@@ -1,4 +1,4 @@
-package com.ng.temp1.controller;
+package com.ng.temp1.controller.common;
 
 import java.util.Map;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ng.temp1.service.LoginService;
+import com.ng.temp1.service.common.LoginService;
 import com.ng.temp1.vo.UserInfoVO;
 
 @Controller
