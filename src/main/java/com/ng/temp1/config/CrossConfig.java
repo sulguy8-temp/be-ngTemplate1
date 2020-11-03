@@ -52,6 +52,7 @@ public class CrossConfig implements WebMvcConfigurer {
 		registry.addInterceptor(adminInterceptor)
 		.excludePathPatterns("/**/*.css","/**/*.js")
 		.excludePathPatterns("/test")
+		.excludePathPatterns("/login/user")
 		.addPathPatterns("/**"); 
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}
