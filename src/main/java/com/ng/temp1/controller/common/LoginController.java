@@ -20,6 +20,7 @@ public class LoginController {
 	
 	@PostMapping("/login/user")
 	public @ResponseBody Map<String,Object> doUserLogin(@RequestBody UserInfoVO usi){
+		System.out.println("login check");
 		return loginService.doUserLogin(usi);
 	}
 }

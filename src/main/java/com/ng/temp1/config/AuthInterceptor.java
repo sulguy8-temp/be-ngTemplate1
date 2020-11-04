@@ -57,11 +57,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 		
-		if("/".equals(request.getRequestURI()) || request.getRequestURI().indexOf("/gen")==0) {
-			response.sendRedirect(request.getContextPath() + "/adm/login");
-		}else {
-			throw new ServiceException("로그인이 만료되었습니다.","err03");
-		} 
+//		if("/".equals(request.getRequestURI()) || request.getRequestURI().indexOf("/gen")==0) {
+//			response.sendRedirect(request.getContextPath() + "/adm/login");
+//		}else {
+//			throw new ServiceException("로그인이 만료되었습니다.","err03");
+//		} 
 		return false; 
 	}
 	
