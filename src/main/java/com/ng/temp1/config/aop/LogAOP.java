@@ -1,4 +1,4 @@
-package com.ng.temp1.config;
+package com.ng.temp1.config.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -15,6 +15,7 @@ public class LogAOP {
 	
 	@Around("execution(* com.ng.temp1.controller..*.*(..))")
 	public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+		System.out.println("log test");
 		String signatureInfo = getSignatureInfo(joinPoint);
 		log.debug("=>> " + signatureInfo);
 		Object retVal = joinPoint.proceed();

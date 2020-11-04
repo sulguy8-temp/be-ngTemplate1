@@ -18,20 +18,7 @@ public class HttpSessionConfig implements HttpSessionListener {
 	public void sessionCreated(HttpSessionEvent event) {
 		event.getSession().setMaxInactiveInterval(60 * 60);
 	}
-/*
- * 
-#velocity
-spring.velocity.resourceLoaderPath=classpath:/velocity/
-spring.velocity.prefix=
-spring.velocity.suffix=.vm
-spring.velocity.cache=false
-spring.velocity.check-template-location=true
-spring.velocity.content-type=text/html
-spring.velocity.charset=UTF-8
-spring.velocity.properties.input.encoding=UTF-8
-spring.velocity.properties.output.encoding=UTF-8
 
- */
 	@Bean
 	public VelocityEngine getVelocityEngine() throws VelocityException, IOException {
 		VelocityEngine ve = new VelocityEngine();

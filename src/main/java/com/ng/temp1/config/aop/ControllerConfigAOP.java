@@ -1,4 +1,4 @@
-package com.ng.temp1.config;
+package com.ng.temp1.config.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -25,6 +25,15 @@ public class ControllerConfigAOP {
 		om.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 	}
 
+	@Around("execution(java.io.Closeable com.ng.temp1.controller..*.*(..))")
+	public Object paingJoin(ProceedingJoinPoint pjp) throws Throwable {
+		System.out.println("ControllerAOP");
+		Object obj = pjp.proceed();
+
+		return obj;
+	}
+	
+	
 	// page 기본값 1
 	// pageSize 기본값 10
 //	@Around("execution(java.io.Closeable kr.co.withmom.controller..*.*(..))")

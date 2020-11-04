@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ng.temp1.service.UserInfoService;
+import com.ng.temp1.types.ErrorType;
 import com.ng.temp1.vo.UserInfoVO;
 import com.ng.temp1.vo.common.PaginationVO;
 
@@ -27,8 +28,9 @@ public class UserInfoController {
 	private UserInfoService usiService;
 
 	@GetMapping("/test")
-	public void test(){ 
-		System.out.println("hello");
+	public Closeable test(){ 
+		System.out.println(ErrorType.ERR02.getErrorText());
+		return null;
 	}
 	
 	@GetMapping("/usr/usis")

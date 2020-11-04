@@ -22,6 +22,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
+		
 		log.debug("admin session check before");
 		String angular = request.getHeader("x-angular");
 		String id = request.getHeader("x-auth-id");
